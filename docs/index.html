@@ -1,0 +1,101 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formula-driven Supervised Learning with Recursive Tiling Patterns</title>
+    <link rel="stylesheet" type="text/css" href="./pvg.css">
+    <link rel="shortcut icon" type="image/png" href="./img/cc_logo_1_crop.png">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
+</head>
+
+<body>
+<script type="text/javascript" src="./header.js"></script>
+
+<style>
+a.myclass {
+    color:#DE382D;
+    text-decoration: underline
+}
+</style>
+
+<style>
+a.link {
+    text-decoration: underline
+}
+</style>
+
+
+<h1 align="center" style="font-size: 30pt;"><b>Formula-driven Supervised Learning with Recursive Tiling Patterns</b></h1><br/>
+
+<center>
+    <font color="#c7254e">ICCV 2021 Workshop on Human-centric Trustworthy Computer Vision</font><br><br>
+    <a href="http://hirokatsukataoka.net/" class="">Hirokatsu Kataoka</a><sup>1</sup> &emsp; Asato Matsumoto<sup>1,2</sup> &emsp; Eisuke Yamagata<sup>3</sup><br> <a href="https://scholar.google.com/citations?user=2nmJ6qQAAAAJ&hl=ja" class="">Ryosuke Yamada</a><sup>1,4</sup> &emsp; <a href="https://mmai.tech/" class="">Nakamasa Inoue</a><sup>3</sup> &emsp; <a href="https://staff.aist.go.jp/yu.satou/"  class="">Yutaka Satoh</a><sup>1,2</sup><br>
+    1: AIST &emsp; 2: Univ. of Tsukuba &emsp; 3: TITech &emsp; 4: TDU<br><br>
+    
+    <section class="delta">
+        <div class="container">
+            <a href="https://openaccess.thecvf.com/content/ICCV2021W/HTCV/html/Kataoka_Formula-Driven_Supervised_Learning_With_Recursive_Tiling_Patterns_ICCVW_2021_paper.html"><button class="btn btn-gray">Paper</button></a>
+            <a href="http://hirokatsukataoka.net/temp/presen/211017ICCV2021WS_TileDB.pdf"><button class="btn btn-gray">Presen</button></a>
+            <!--<a href="">Oral</button class="btn btn-gray"></a>
+            <a href=""><button class="btn btn-gray">Poster</button></a>
+            <a href=""><button class="btn btn-gray">Supp</button></a>-->
+        </div>
+    </section>
+    <br><br>
+        <video src="./img/211017ICCV2021WS_TileDB.mp4" controls  style="width: 90%;"/></video>
+</center>
+
+<br>
+<h2>Abstract</h2>
+<p>
+Can convolutional neural networks pre-trained without natural images be used to assist natural image understanding? Formula-Driven Supervised Learning (FDSL) automatically generates image patterns and their category labels by assigning a well-organized formula. Due to the characteristics of not using natural images in pre-training phase, FDSL is expected to develop a trustworthy vision-based system in terms of human-annotation-free, fairer and more transparent datasets. In this paper, we propose TileDB which consists of recursive tiling patterns in the whole image and evaluates the family of FDSL such as the datasets consist of Perlin noise and Bezier curves. Experimental results show that our proposed TileDB pre-trained model performs much better than models trained from scratch, surpasses a similar self-supervised learning (SSL), and performs similarly to the models pre-trained with 100k-order natural image datasets such as ImageNet-100 and Places-30. By comparing to the FractalDB pre-trained model, the TileDB pre-trained model achieves better performances in a compact dataset (< 1,000 categories). Moreover, the image representation trained on TileDB can extract similar features to the ImageNet pre-trained model even though the training images are non-trivially different.
+</p>
+
+<br>
+<h2>Tile DataBase (TileDB)</h2>
+Comparisons of feature representations between pre-training with supervised dataset (a) and FDSL datasets (b)-(e). According to our experimental results, the models pre-trained with FDSL can be a close representation to a model pre-trained with human-annotated dataset. Surprisingly, pre-training (PT) representations on tiles (g) are 'obviously' similar to the representations of PT on ImageNet (f), while the two image sets (a) and (b) are quite different. Also, the performance rates with the TileDB pre-trained model are relatively close to those from the ImageNet/Places pre-trained models (e.g., TileDB 78.0 vs. ImageNet 79.5 on Places-30).
+<br><br><br>
+<center>
+        <img src="./img/teaser.png" style="width: 90%;"/><br><br>
+</center>
+
+
+<br>
+<h2>Framework</h2>
+An overview of our method is shown in the following figure. Both training images and their categories are automatically generated with a mathematical formula. Basic hexagon patterns and their randomly changing points (parameters a, b, and c) generate image patterns and their categories as a TileDB. Based on the parameter intervals, the various (pre-)training categories are assigned in the mathematical formula. 
+<br><br><br>
+<center>
+        <img src="./img/framework.png" style="width: 80%;"/>
+</center>
+
+<br><br><br>
+<h2>Experimental Results</h2>
+
+Figures (a) and (b) illustrate the relationship between performance rates on CIFAR-10 and #category/#instance configurations in pre-training. Note that the we made these figures in our implementation. The final accuracy in FractalDB-10k (94.1\%) <a href="https://hirokatsukataoka16.github.io/Pretraining-without-Natural-Images/" target="_blank">[Kataoka+, ACCV20]</a> is better than the TileDB pre-trained model, however, TileDB pre-training with fewer #category/#instance surpasses the FractalDB pre-training on CIFAR-10 dataset. This shows that TileDB does not require a relatively large dataset like FractalDB to create a pre-trained model. According to the results, we confirmed the TileDB pre-trained model can be made without any difficult parameter tunings like a FractalDB pre-trained model.
+<br><br>
+<center>
+        <img src="./img/category_tiledbvsfractaldb.png" style="width: 48%;"/>
+        <img src="./img/instance_tiledbvsfractaldb.png" style="width: 48%;"/>
+</center>
+
+<br>
+<h2>Citation</h2>
+@inproceedings{KataokaICCV2021WS,<br>
+&emsp;author     = {Kataoka, Hirokatsu and Matsumoto, Asato and Yamagata, Eisuke and Yamada, Ryosuke and Inoue, Nakamasa and Satoh, Yutaka},<br>
+&emsp;title      = {Formula-driven Supervised Learning with Recursive Tiling Patterns},<br>
+&emsp;journal    = {ICCV 2021 Workshop on Human-centric Trustworthy Computer Vision (HTCV)},<br>
+&emsp;year       = {2021}<br>
+}
+<br><br>
+
+<h2>Acknowledgement</h2></a>
+<ul>
+    <li>This paper is based on results obtained from a project, JPNP20006, commissioned by the New Energy and Industrial Technology Development Organization (NEDO).</li>
+    <li> This work was supported by JSPS KAKENHI Grant Number JP19H01134.</li>
+    <li> Computational resource of AI Bridging Cloud Infrastructure (ABCI) provided by National Institute of Advanced Industrial Science and Technology (AIST) was used.</li>
+</ul>
+
+<br><br><br>
+<script type="text/javascript" src="./footer.js"></script>
+</body></html>
